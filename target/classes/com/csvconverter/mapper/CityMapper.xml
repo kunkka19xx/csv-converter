@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csvconverter.mapper.CityMapper">
+	<resultMap id="BaseResultMap" type="com.csvconverter.model.City">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="lad_d" jdbcType="VARCHAR" property="ladD" />
+		<result column="lat_m" jdbcType="VARCHAR" property="latM" />
+		<result column="n_s" jdbcType="VARCHAR" property="nS" />
+		<result column="lon_d" jdbcType="VARCHAR" property="lonD" />
+		<result column="lon_m" jdbcType="VARCHAR" property="lonM" />
+		<result column="lon_s" jdbcType="VARCHAR" property="lonS" />
+		<result column="e_w" jdbcType="VARCHAR" property="eW" />
+		<result column="city" jdbcType="VARCHAR" property="city" />
+		<result column="state" jdbcType="VARCHAR" property="state" />
+	</resultMap>
+	<select id="selectAllCities">
+	  SELECT* FROM CITY
+  </select>
+	<insert id="insertcities" parameterType="java.util.List">
+		insert into city_target (lon_s, ew, 
+      city, state)
+      	values
+		<foreach collection="cities" item="city" separator=","> 
+    	(
+      		#{city.lonS,jdbcType=VARCHAR}, 
+      	 	#{city.eW,jdbcType=VARCHAR}, 
+      	 	#{city.city,jdbcType=VARCHAR}, 
+     	 	#{city.state,jdbcType=VARCHAR}
+    	)
+    </foreach>
+	</insert>
+</mapper>

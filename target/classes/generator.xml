@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<jdbcConnection
+			driverClass="org.postgresql.Driver"
+			connectionURL="jdbc:postgresql://localhost:5432/csv-converter"
+			userId="csv_admin"
+			password="root"></jdbcConnection>
+		<javaModelGenerator
+			targetPackage="com.csvconverter.temp_generated"
+			targetProject="csv-converter" />
+		<sqlMapGenerator
+			targetPackage="com.csvconverter.temp_generated"
+			targetProject="csv-converter">
+		</sqlMapGenerator>
+		<javaClientGenerator
+			type="XMLMAPPER"
+			targetPackage="com.csvconverter.temp_generated"
+			targetProject="csv-converter">
+		</javaClientGenerator>
+		<table tableName="city_target">
+		</table>
+	</context>
+</generatorConfiguration>

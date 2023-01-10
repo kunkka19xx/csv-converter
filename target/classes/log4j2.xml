@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Configuration status="warn">
+	<Properties>
+		<Property name="basePath">${basedir}/src/main/resources</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%style{%d{ISO8601}}{black} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable" />
+		</Console>
+		
+		<RollingFile name="RollingFile"
+			fileName="${basePath}/app.log"
+			filePattern="${basePath}/app-%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<pattern>%d %p %C{1.} [%t] %m%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10">
+				<Delete basePath="${basePath}" maxDepth="10">
+					<!-- Delete all files older than 30 days -->
+					<IfLastModified age="30d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+		
+		
+		<Syslog name="Syslog" format="RFC5424" host="localhost" port="514"
+			protocol="UDP" appName="baeldung" facility="LOCAL0" />
+			
+	</Appenders>
+	<Loggers>
+		
+		<Logger name="com.csvconverter" level="info">
+			<AppenderRef ref="RollingFile" />
+		</Logger>
+		
+		<!-- LOG everything at INFO level -->
+		<Root level="warn">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="Syslog" />
+		</Root>
+	</Loggers>
+	
+</Configuration>

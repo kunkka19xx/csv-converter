@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csvconverter.temp_generated.CityMapper">
+  <resultMap id="BaseResultMap" type="com.csvconverter.temp_generated.City">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="lad_d" jdbcType="VARCHAR" property="ladD" />
+    <result column="lat_m" jdbcType="VARCHAR" property="latM" />
+    <result column="n_s" jdbcType="VARCHAR" property="nS" />
+    <result column="lon_d" jdbcType="VARCHAR" property="lonD" />
+    <result column="lon_m" jdbcType="VARCHAR" property="lonM" />
+    <result column="lon_s" jdbcType="VARCHAR" property="lonS" />
+    <result column="e_w" jdbcType="VARCHAR" property="eW" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, lad_d, lat_m, n_s, lon_d, lon_m, lon_s, e_w, city, state
+  </sql>
+  <select id="selectByExample" parameterType="com.csvconverter.temp_generated.CityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from city
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from city
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from city
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.csvconverter.temp_generated.CityExample">
+    delete from city
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.csvconverter.temp_generated.City">
+    insert into city (id, lad_d, lat_m, 
+      n_s, lon_d, lon_m, lon_s, 
+      e_w, city, state)
+    values (#{id,jdbcType=INTEGER}, #{ladD,jdbcType=VARCHAR}, #{latM,jdbcType=VARCHAR}, 
+      #{nS,jdbcType=VARCHAR}, #{lonD,jdbcType=VARCHAR}, #{lonM,jdbcType=VARCHAR}, #{lonS,jdbcType=VARCHAR}, 
+      #{eW,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.csvconverter.temp_generated.City">
+    insert into city
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ladD != null">
+        lad_d,
+      </if>
+      <if test="latM != null">
+        lat_m,
+      </if>
+      <if test="nS != null">
+        n_s,
+      </if>
+      <if test="lonD != null">
+        lon_d,
+      </if>
+      <if test="lonM != null">
+        lon_m,
+      </if>
+      <if test="lonS != null">
+        lon_s,
+      </if>
+      <if test="eW != null">
+        e_w,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ladD != null">
+        #{ladD,jdbcType=VARCHAR},
+      </if>
+      <if test="latM != null">
+        #{latM,jdbcType=VARCHAR},
+      </if>
+      <if test="nS != null">
+        #{nS,jdbcType=VARCHAR},
+      </if>
+      <if test="lonD != null">
+        #{lonD,jdbcType=VARCHAR},
+      </if>
+      <if test="lonM != null">
+        #{lonM,jdbcType=VARCHAR},
+      </if>
+      <if test="lonS != null">
+        #{lonS,jdbcType=VARCHAR},
+      </if>
+      <if test="eW != null">
+        #{eW,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.csvconverter.temp_generated.CityExample" resultType="java.lang.Long">
+    select count(*) from city
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update city
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=INTEGER},
+      </if>
+      <if test="row.ladD != null">
+        lad_d = #{row.ladD,jdbcType=VARCHAR},
+      </if>
+      <if test="row.latM != null">
+        lat_m = #{row.latM,jdbcType=VARCHAR},
+      </if>
+      <if test="row.nS != null">
+        n_s = #{row.nS,jdbcType=VARCHAR},
+      </if>
+      <if test="row.lonD != null">
+        lon_d = #{row.lonD,jdbcType=VARCHAR},
+      </if>
+      <if test="row.lonM != null">
+        lon_m = #{row.lonM,jdbcType=VARCHAR},
+      </if>
+      <if test="row.lonS != null">
+        lon_s = #{row.lonS,jdbcType=VARCHAR},
+      </if>
+      <if test="row.eW != null">
+        e_w = #{row.eW,jdbcType=VARCHAR},
+      </if>
+      <if test="row.city != null">
+        city = #{row.city,jdbcType=VARCHAR},
+      </if>
+      <if test="row.state != null">
+        state = #{row.state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update city
+    set id = #{row.id,jdbcType=INTEGER},
+      lad_d = #{row.ladD,jdbcType=VARCHAR},
+      lat_m = #{row.latM,jdbcType=VARCHAR},
+      n_s = #{row.nS,jdbcType=VARCHAR},
+      lon_d = #{row.lonD,jdbcType=VARCHAR},
+      lon_m = #{row.lonM,jdbcType=VARCHAR},
+      lon_s = #{row.lonS,jdbcType=VARCHAR},
+      e_w = #{row.eW,jdbcType=VARCHAR},
+      city = #{row.city,jdbcType=VARCHAR},
+      state = #{row.state,jdbcType=VARCHAR}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.csvconverter.temp_generated.City">
+    update city
+    <set>
+      <if test="ladD != null">
+        lad_d = #{ladD,jdbcType=VARCHAR},
+      </if>
+      <if test="latM != null">
+        lat_m = #{latM,jdbcType=VARCHAR},
+      </if>
+      <if test="nS != null">
+        n_s = #{nS,jdbcType=VARCHAR},
+      </if>
+      <if test="lonD != null">
+        lon_d = #{lonD,jdbcType=VARCHAR},
+      </if>
+      <if test="lonM != null">
+        lon_m = #{lonM,jdbcType=VARCHAR},
+      </if>
+      <if test="lonS != null">
+        lon_s = #{lonS,jdbcType=VARCHAR},
+      </if>
+      <if test="eW != null">
+        e_w = #{eW,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.csvconverter.temp_generated.City">
+    update city
+    set lad_d = #{ladD,jdbcType=VARCHAR},
+      lat_m = #{latM,jdbcType=VARCHAR},
+      n_s = #{nS,jdbcType=VARCHAR},
+      lon_d = #{lonD,jdbcType=VARCHAR},
+      lon_m = #{lonM,jdbcType=VARCHAR},
+      lon_s = #{lonS,jdbcType=VARCHAR},
+      e_w = #{eW,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
