@@ -14,7 +14,7 @@ Extension:
 - Mybatis generator 1.4
 
 Instruction
-Maven: Clean 
+Maven: Clean -> 
 Maven: Install
 
 Arguments:
